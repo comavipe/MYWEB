@@ -2,5 +2,5 @@
 layout: home
 title: Bienvenido
 ---
-# Hola Mundo 
-Este es mi mi primer sitio web usuando **jekyll** en **GitHun Pages**
+# Hola 
+Este es mi primer sitio web usuando **Jekyll** en **GitHub Pages**
