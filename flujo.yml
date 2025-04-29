@@ -1,0 +1,31 @@
+name: Analizar Archivo XLS
+
+on:
+  push:
+    paths:
+      - '*.xls' # Se activará cuando se haga push de archivos .xls en cualquier parte del repositorio
+
+jobs:
+  analizar_xls:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v3
+
+      - name: Configurar Python (si planeas usar Python para el análisis)
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Instalar dependencias para el análisis (si es necesario)
+        run: pip install pandas openpyxl # Ejemplo para Python y archivos xls
+
+      - name: Analizar el archivo XLS
+        run: python tu_script_de_analisis.py ${{ github.event.commits[0].added }} ${{ github.event.commits[0].modified }} # Pasa los archivos añadidos o modificados como argumentos
+        env:
+          # Aquí podrías pasar variables de entorno si tu script las necesita
+          # Por ejemplo: API_KEY: ${{ secrets.TU_API_KEY }}
+
+      - name: Realizar acciones basadas en el análisis (opcional)
+        run: echo "Aquí puedes agregar pasos para procesar los resultados del análisis."
